@@ -1,2 +1,14 @@
 # FOR_FLUX_SAKE
-A beginner's tutorial for using flux with react
+A simple tutorial for simple people who want to use flux with react.
+This tutorial builds on [my react tutorial](https://github.com/MIJOTHY/REACT_SCHMEACT)
+
+## Pre-requisites
+Although this guide attempts to be as beginner-friendly as possible, it does make some assumptions about your background. It assumes:
+ * Familiarity with Javascript (you understand what the map function does),
+ * Understanding of the module.exports / require pattern,
+ * Some experience with React (you understand the difference between state and props).
+
+## WIP
+
+### Where do I go now?
+Away.
