@@ -11,4 +11,4 @@ Although this guide attempts to be as beginner-friendly as possible, it does mak
 ## WIP
 
 ### Where do I go now?
-Away.
+[Away.](http://foundersandcoders.org/apply.html)
