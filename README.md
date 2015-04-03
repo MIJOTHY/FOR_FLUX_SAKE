@@ -11,4 +11,4 @@ Although this guide attempts to be as beginner-friendly as possible, it does mak
 ## WIP
 
 ### Where do I go now?
-__b.__ [Away to a place that will teach you to code really well for free.](http://foundersandcoders.org/apply.html)  
+[Away to a place that will teach you to code really well for free.](http://foundersandcoders.org/apply.html)  
