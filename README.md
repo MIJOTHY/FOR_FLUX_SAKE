@@ -1,4 +1,4 @@
-# ![flux logo](/assets/img/flux_logo_fandc.png)FOR_FLUX_SAKE![flux logo](/assets/img/flux_logo_fandc.png)
+# ![flux logo](/assets/img/flux_logo_fandc.png) FOR_FLUX_SAKE ![flux logo](/assets/img/flux_logo_fandc.png)
 A simple tutorial for simple people who want to use flux with react.
 This tutorial builds on [my react tutorial](https://github.com/MIJOTHY/REACT_SCHMEACT)
 
