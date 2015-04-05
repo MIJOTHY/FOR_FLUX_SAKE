@@ -29,7 +29,7 @@ So now you're good to get coding, right? Wrong. We've got some preparatory work 
 
 ##The App
 The app we'll be building with the flux design pattern is a 5-a-day tracker.  
-On the left is the _old, react version_ built decades ago. On the right is the _new, flux version_ we'll be building.
+On the left is the __old, react version__ built decades ago. On the right is the __new, flux version__ we'll be building.
 
 ![](/assets/img/App-Mockup.png) ![](/assets/img/App-Mockup-Flux.png) 
 
