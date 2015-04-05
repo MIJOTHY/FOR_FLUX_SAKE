@@ -28,10 +28,9 @@ npm install
 So now you're good to get coding, right? Wrong. We've got some preparatory work to do first.
 
 ##The App
-The app we'll be building with the flux design pattern is a 5-a-day tracker.
-| React Version 	| Flux Version 	|
-|---------------------------------	|--------------------------------------	|
-| ![](/assets/img/App-Mockup.png) 	| ![](/assets/img/App-Mockup-Flux.png) 	|
+The app we'll be building with the flux design pattern is a 5-a-day tracker. On the left is the old, react version. On the right is the version built with the flux architecture.
+
+![](/assets/img/App-Mockup.png) ![](/assets/img/App-Mockup-Flux.png) 
 
 
 ### Where do I go now?
