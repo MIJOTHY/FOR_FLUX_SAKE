@@ -48,5 +48,15 @@ In the __footer__, we can:
 * Clear the entire list by clicking that crappy little restart button
 
 
+## Let's begin
+Let's start small. What's the simplest action we have? I'm gonna say it's `clearFruities()`, which we use when someone clicks that reset button in the footer. Let's not reference `clearFruities()` so that the logic isn't in the view anymore, but adheres to Flux's architectural edict! We're going to want to:
+
+i. Replace our use of `clearFruities()` in the footer's `clickHandler()` function. Instead, we'll create an action that we'll dispatch with the `FruitDispatcher`.
+
+ii. Create a store to hold the data we use for fruits, and take care of the logic for us. We'll also need to get the store listening for dispatched events. In particular, we're gonna want to set it up to listen for whatever action `clearFruities()` has been replaced by, and on hearing that event, have it clear all of the fruit data.
+
+iii. Once we've dealt with the store, we'll need to change our top-level component to get its state from that store, rather than taking care of the data and logic on its own!
+
+So: CLICK ACTION --> DISPATCH 'clear' event --> STORE listening for 'clear' event HEARS the event, deletes all of its FRUIT DATA, EMITS A CHANGE EVENT --> VIEW listening for 'change' event from that store HEARS the event, ASKS for new data, and SETS ITS STATE, causing a re-render.
 ### Where do I go now?
 [Away to a place that will teach you to code really well for free.](http://foundersandcoders.org/apply.html)
