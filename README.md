@@ -34,18 +34,18 @@ So now you know what Flux is, and you've installed the shizzle, you're good to g
 The app we'll be building with the Flux design pattern is a 5-a-day tracker.
 On the left is the __old, React version__ built decades ago. On the right is the __new, Flux version__ we'll be building.
 
-![](/assets/img/App-Mockup.png) ![](/assets/img/App-Mockup-Flux.png)
+![](/assets/img/App-Mockup.png)![](/assets/img/App-Mockup-Flux.png)
 ###Impressed? I thought so.  Let's break down the functionality of this app.
 In the __header__, we can:
-* Type text into the header to filter the fruit list
-* Type text into the header and click the leaf button/hit enter to add a new fruit item to the list
+* Type text into the header to __filter__ the fruit list
+* Type text into the header and click the leaf button/hit enter to __add__ a new fruit item to the list
 
 In each __list item__, we can:
-* Increment the quantity we've eaten of a given piece of fruit by clicking the associated plus button.
-* Decrement the quantity we've eaten by clicking the minus button, and if we click minus on a 0-quantity fruit item, it removes it from the list.
+* __Increment__ the quantity we've eaten of a given piece of fruit by clicking the associated plus button.
+* __Decrement__ the quantity we've eaten by clicking the minus button, and if we click minus on a 0-quantity fruit item, it __removes__ it from the list.
 
 In the __footer__, we can:
-* Clear the entire list by clicking that crappy little restart button
+* __Clear__ the entire list by clicking that crappy little restart button
 
 
 ## Let's begin
