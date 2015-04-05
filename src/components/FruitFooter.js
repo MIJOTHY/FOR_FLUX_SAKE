@@ -6,12 +6,13 @@ var FruitFooter = React.createClass({
 		e.preventDefault();
 		return this.props.clearFruities();
 	},
-	
+
 	render: function() {
 		return (
 			<div className="options-item">
 			    <button onClick={this.clickHandler} className="clear"><img id="restart" src="assets/img/glyphicon-restart.png" /></button>
-			</div>
+			    <button className="clear" id="wtf"><img src="assets/img/flux_logo_fandc_black.png" id="fluxy" /> </button>
+      </div>
 		);
 	}
 

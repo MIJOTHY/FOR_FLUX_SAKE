@@ -6,7 +6,7 @@ In this tutorial, we'll be converting a purely react app into one built with the
 ###We'll be turning this:
 ![react version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup.png)
 ###into this
-![flux version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup.png)
+![flux version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup-Flux.png)
 
 ## Pre-requisites
 Although this guide attempts to be as beginner-friendly as possible, it does make some assumptions about your background. It assumes:

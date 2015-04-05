@@ -89,6 +89,16 @@ button.clear {
 #restart {
   max-height: 15px;
 }
+
+#wtf {
+  height:20px;
+  float: right;
+}
+
+#fluxy {
+  height: 10px;
+}
+
 /* Input placeholder styles */
 *::-webkit-input-placeholder {
     font-family: 'Raleway', sans-serif;
