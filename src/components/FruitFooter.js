@@ -1,10 +1,11 @@
-var React = require("react");
+var React 		 = require("react");
+var FruitActions = require("../actions/FruitActionCreators");
 
-var FruitFooter = React.createClass({
+var FruitFooter  = React.createClass({
 
 	clickHandler: function(e) {
 		e.preventDefault();
-		return this.props.clearFruities();
+		FruitActions.clearFruities();
 	},
 
 	render: function() {

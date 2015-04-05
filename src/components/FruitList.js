@@ -5,7 +5,6 @@ var FruitList = React.createClass({
 	
 	render: function() {
 		var fruititems = [];
-
 		this.props.fruities.forEach(function(fruit) {
 			if (fruit.fruit.indexOf(this.props.filterText) !== -1)
 			fruititems.push(

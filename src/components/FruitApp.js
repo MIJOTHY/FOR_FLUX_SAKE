@@ -2,23 +2,31 @@ var React 		= require("react");
 var FruitHeader = require("./FruitHeader");
 var FruitList 	= require("./FruitList");
 var FruitFooter = require("./FruitFooter");
+var FruitStore 	= require("../stores/FruitStore");
 
-function getStateFromData() {
+function getStateFromStore() {
 	return {
-		headerText: "",
-		fruities: [
-			{ id: "123456", fruit: "Chicken", quantity:6 },
-			{ id: "123467", fruit: "Apples" , quantity:2 },
-			{ id: "123478", fruit: "Oranges", quantity:4 },
-			{ id: "123489", fruit: "Peaches", quantity:1 },
-		]
+		headerText: FruitStore.getText(),
+		fruities: FruitStore.getFruities()
 	};
 } 
 
 var FruitApp = React.createClass({
 	
 	getInitialState: function() {
-		return getStateFromData();
+		return getStateFromStore();
+	},
+
+	componentDidMount: function() {
+		FruitStore.addChangeListener(this._onChange);
+	},
+
+	componentWillUnmount: function() {
+		FruitStore.removeChangeListener(this._onChange);
+	},
+
+	_onChange: function() {
+		this.setState(getStateFromStore());
 	},
 
 	addFruit: function(name) {
@@ -59,16 +67,12 @@ var FruitApp = React.createClass({
 		return this.setState({fruities: newFruities});
 	},
 
-	clearFruities: function() {
-		return this.setState({fruities: []});
-	},
-
 	render: function() {
 		return (
 			<div className="app-wrapper">
 				<FruitHeader title={this.state.headerText} addFruit={this.addFruit} changeText={this.changeText} />
 				<FruitList fruities={this.state.fruities} filterText={this.state.headerText} incrementQuantity={this.incrementQuantity} decrementQuantity={this.decrementQuantity}/>
-				<FruitFooter clearFruities={this.clearFruities} />
+				<FruitFooter/>
 			</div>
 		);
 	}
