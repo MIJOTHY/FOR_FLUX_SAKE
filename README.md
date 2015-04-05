@@ -48,15 +48,44 @@ In the __footer__, we can:
 * Clear the entire list by clicking that crappy little restart button
 
 
-## Let's begin
-Let's start small. What's the simplest action we have? I'm gonna say it's `clearFruities()`, which we use when someone clicks that reset button in the footer. Let's not reference `clearFruities()` so that the logic isn't in the view anymore, but adheres to Flux's architectural edict! We're going to want to:
+## New Beginnings
+Let's start small.
+
+Now that we've split up the data-handling and the view rendering into different files, let's start migrating some of that interactivity over. What's the simplest action we have? I'm gonna say it's `clearFruities()`, which we use when someone clicks that reset button in the footer. Let's not reference `clearFruities()` so that the logic isn't in the view anymore, but adheres to Flux's architectural edict! We're going to want to:
 
 i. Replace our use of `clearFruities()` in the footer's `clickHandler()` function. Instead, we'll create an action that we'll dispatch with the `FruitDispatcher`.
 
-ii. Create a store to hold the data we use for fruits, and take care of the logic for us. We'll also need to get the store listening for dispatched events. In particular, we're gonna want to set it up to listen for whatever action `clearFruities()` has been replaced by, and on hearing that event, have it clear all of the fruit data.
+ii. We'll need to get our store listening for dispatched events. In particular, we're gonna want to set it up to listen for whatever event `clearFruities()` replacement is gonna dispatch, and on hearing that event, have it clear out all of the fruit.
 
 iii. Once we've dealt with the store, we'll need to change our top-level component to get its state from that store, rather than taking care of the data and logic on its own!
 
 So: CLICK ACTION --> DISPATCH 'clear' event --> STORE listening for 'clear' event HEARS the event, deletes all of its FRUIT DATA, EMITS A CHANGE EVENT --> VIEW listening for 'change' event from that store HEARS the event, ASKS for new data, and SETS ITS STATE, causing a re-render.
+
+###Step 1 - Making our dispatcher:
+Really, it couldn't be simpler. In the 'src' folder, just make a 'dispatcher' folder, and create a FruitDispatcher.js file in it. Then, write these two lines:
+```
+var Dispatcher = require("flux").Dispatcher;
+module.exports = new Dispatcher();
+```
+And we're done.
+
+###Step 2 - Adjusting FruitFooter.js:
+We're going to make use of the dispatcher, so let's add the following to the top of the file:
+```js
+var FruitDispatcher = require("../dispatcher/FruitDispatcher");
+```
+Now we can change the component's `clickHandler()` function to the following:
+```js
+clickHandler: function(e) {
+	e.preventDefault();
+	FruitDispatcher.dispatch({
+		eventType: "CLEAR_ALL_FRUITS"
+	});
+}
+```
+Great. Now on click, we're dispatching a CLEAR_ALL_FRUITS event. It doesn't have any payload as we don't need any data to delete all our data. Now we need to have our FruitStore set up to listen for this dispatched event and act accordingly.
+
+###Step 3 - Adjusting FruitStore.js:
+
 ### Where do I go now?
 [Away to a place that will teach you to code really well for free.](http://foundersandcoders.org/apply.html)
