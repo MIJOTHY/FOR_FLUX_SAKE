@@ -6,7 +6,7 @@ var FruitFooter = React.createClass({
 	clickHandler: function(e) {
 		e.preventDefault();
 		FruitDispatcher.dispatch({
-			eventType: "CLEAR_ALL_FRUITS"
+			type: "CLEAR_ALL_FRUITS"
 		});
 	},
 
