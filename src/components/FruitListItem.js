@@ -1,15 +1,16 @@
 var React = require("react");
+var FruitActions = require("../actions/FruitActionCreators");
 
 var FruitListItem = React.createClass({
 
 	plusHandler: function(e) {
 		e.preventDefault();
-		this.props.incrementQuantity(this.props.id);
+		FruitActions.incrementQuantity(this.props.id);
 	},
 
 	minusHandler: function(e) {
 		e.preventDefault();
-		this.props.decrementQuantity(this.props.id);
+		FruitActions.decrementQuantity(this.props.id);
 	},
 
 	render: function() {

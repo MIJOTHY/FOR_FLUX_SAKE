@@ -42,10 +42,49 @@ FruitDispatcher.register(function(action) {
 
 	switch(action.type) {
 
-		case "CLEAR_ALL_FRUITS":
+		case ActionTypes.CHANGE_TEXT:
+			_headerText = action.contents;
+			FruitStore.emitChange();
+			break;
+		
+		case ActionTypes.ADD_FRUIT: 
+			var freshFruit = {
+				id: Date.now().toString().slice(-6),
+				fruit: action.contents,
+				quantity: 1
+			};
+			console.log(freshFruit.id);
+			_fruities.push(freshFruit);
+			_headerText = "";
+			FruitStore.emitChange();
+			break;
+
+		case ActionTypes.CLEAR_ALL_FRUITS:
 			_fruities = [];
 			FruitStore.emitChange();
 			break;
+
+		case ActionTypes.INCREMENT_QUANTITY:
+			_fruities = _fruities.map(function(ele) {
+				if (ele.id === action.contents) ele.quantity += 1;
+				return ele;
+			});
+			FruitStore.emitChange();
+			break;
+
+		case ActionTypes.DECREMENT_QUANTITY:
+			newFruities = [];
+			_fruities.forEach(function(ele) {
+				if (ele.id === action.contents) {
+					if (ele.quantity === 0) return;
+					ele.quantity -= 1;
+				}
+				return newFruities.push(ele);
+			});
+			_fruities = newFruities;
+			FruitStore.emitChange();
+			break;
+
 	}
 });
 

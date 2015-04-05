@@ -1,15 +1,16 @@
-var React = require("react");
+var React 			= require("react");
+var FruitActions 	= require("../actions/FruitActionCreators");
 
 var FruitHeader = React.createClass({
 
 	textChangeHandler: function(e) {
 		e.preventDefault();
-		this.props.changeText(e.target.value);
+		FruitActions.changeText(e.target.value);
 	},
 
 	submitHandler: function(e) {
 		e.preventDefault();
-		this.props.addFruit(this.props.title);
+		FruitActions.addFruit(this.props.title);
 	},
 
 	render: function() {
