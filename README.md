@@ -1,8 +1,12 @@
-# ![flux logo](/assets/img/flux_logo_fandc.png) FOR_FLUX_SAKE ![flux logo](/assets/img/flux_logo_fandc.png)
+# ![flux logo](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/flux_logo_fandc.png) FOR_FLUX_SAKE ![flux logo](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/flux_logo_fandc.png)
 A simple tutorial for simple people who want to use flux with react.
 This tutorial follows on from [my react tutorial (WIP)](https://github.com/MIJOTHY/REACT_SCHMEACT).
 
-In this tutorial, we'll be converting a purely react app into one that incorporates the flux pattern. By doing so, I hope you can see why you  probably want to use flux if you're using react, and how you can go about changing your app accordingly.
+In this tutorial, we'll be converting a purely react app into one built with the flux design pattern. By doing so, I hope you can see why you probably want to use flux if you're using react, and how you might start going about changing your app accordingly.
+###We'll be turning this:
+![react version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup.png)
+###into this
+![flux version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup.png)
 
 ## Pre-requisites
 Although this guide attempts to be as beginner-friendly as possible, it does make some assumptions about your background. It assumes:
