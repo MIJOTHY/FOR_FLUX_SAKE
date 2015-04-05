@@ -18,6 +18,7 @@
   "homepage": "https://github.com/MIJOTHY/FOR_FLUX_SAKE",
   "dependencies": {
     "flux": "^2.0.1",
+    "object-assign": "^2.0.0",
     "react": "^0.13.1"
   },
   "devDependencies": {
