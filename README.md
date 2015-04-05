@@ -1,4 +1,4 @@
-# ![flux logo](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/flux_logo_fandc.png) FOR_FLUX_SAKE ![flux logo](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/flux_logo_fandc.png)
+# ![flux logo](/assets/img/flux_logo_fandc.png) FOR_FLUX_SAKE ![flux logo](/assets/img/flux_logo_fandc.png)
 A simple tutorial for simple people who want to use flux with react.
 This tutorial follows on from [my react tutorial (WIP)](https://github.com/MIJOTHY/REACT_SCHMEACT).
 
@@ -34,7 +34,7 @@ So now you know what Flux is, and you've installed the shizzle, you're good to g
 The app we'll be building with the Flux design pattern is a 5-a-day tracker.
 On the left is the __old, React version__ built decades ago. On the right is the __new, Flux version__ we'll be building.
 
-![](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup.png) ![](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup-Flux.png)
+![](/assets/img/App-Mockup.png) ![](/assets/img/App-Mockup-Flux.png)
 ###Impressed? I thought so.  Let's break down the functionality of this app.
 In the __header__, we can:
 * Type text into the header to filter the fruit list
