@@ -1,4 +1,4 @@
-# ![flux logo](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/flux_logo_fandc.png) FOR_FLUX_SAKE ![flux logo](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/flux_logo_fandc.png)
+# ![flux logo](/assets/img/flux_logo_fandc.png) FOR_FLUX_SAKE ![flux logo](/assets/img/flux_logo_fandc.png)
 A simple tutorial for simple people who want to use flux with react.
 This tutorial follows on from [my react tutorial (WIP)](https://github.com/MIJOTHY/REACT_SCHMEACT).
 
@@ -29,9 +29,9 @@ So now you're good to get coding, right? Wrong. We've got some preparatory work 
 
 ##The App
 The app we'll be building with the flux design pattern is a 5-a-day tracker.
-| React Version | Flux Version |
-|---------------|--------------|
-|![react version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup.png)|![flux version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup-Flux.png)|
+| React Version 	| Flux Version 	|
+|---------------------------------	|--------------------------------------	|
+| ![](/assets/img/App-Mockup.png) 	| ![](/assets/img/App-Mockup-Flux.png) 	|
 
 
 ### Where do I go now?
