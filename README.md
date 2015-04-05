@@ -2,11 +2,9 @@
 A simple tutorial for simple people who want to use flux with react.
 This tutorial follows on from [my react tutorial (WIP)](https://github.com/MIJOTHY/REACT_SCHMEACT).
 
+##Introduction
 In this tutorial, we'll be converting a purely react app into one built with the flux design pattern. By doing so, I hope you can see why you probably want to use flux if you're using react, and how you might start going about changing your app accordingly.
-###We'll be turning this:
-![react version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup.png)
-#####into this
-![flux version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup-Flux.png)
+
 
 ## Pre-requisites
 Although this guide attempts to be as beginner-friendly as possible, it does make some assumptions about your background. It assumes:
@@ -15,8 +13,7 @@ Although this guide attempts to be as beginner-friendly as possible, it does mak
  * Some experience with __React__ (you understand the difference between state and props, where state should lie, and how components can set the state of other components),
  * Some experience with __git__ (we'll be switching branches now and again).
 
-## Technologies
-We'll be using __react and flux__ in this tutorial. Other than a number of build/dev tools, and __object-assign__ we won't be using anything else.
+We'll be using __react__ and __flux__ in this tutorial. Other than a number of build/dev tools and __object-assign__, we won't be using anything else.
 
 ## Getting Started
 ```
@@ -27,6 +24,14 @@ git checkout reactversion
 npm install gulp browserify -g
 npm install
 ```
+
+So now you're good to get coding, right? Wrong. We've got some preparatory work to do first.
+
+##The App
+The app we'll be building with the flux design pattern is a 5-a-day tracker.
+| React Version | Flux Version |
+|---------------|--------------|
+|![react version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup.png)|![flux version](/home/james/Coding/Tutorials/FOR_FLUX_SAKE/assets/img/App-Mockup-Flux.png)|
 
 
 ### Where do I go now?
