@@ -2,7 +2,8 @@ var React = require("react");
 var FruitDispatcher = require("../dispatcher/FruitDispatcher");
 
 var FruitFooter = React.createClass({
-
+	// Instead of using the clearFruities callback that FruitApp used to give us, we now use the dispatcher to send off an action with a particular type
+	// This is picked up by the FruitStore
 	clickHandler: function(e) {
 		e.preventDefault();
 		FruitDispatcher.dispatch({
