@@ -41,7 +41,7 @@ Safe, but what is Flux?
 
 ### The flow
 i. Some sort of interaction happens  
-ii. Dispatcher dispatches an action
+ii. Dispatcher dispatches an action  
 iii. Store reacts to dispatched action, updating its internal state     
 iv. Store emits change event  
 v. View reacts to store's change event   
