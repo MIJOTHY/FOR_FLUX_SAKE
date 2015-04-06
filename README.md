@@ -39,21 +39,25 @@ I highly recommend comparing the purely React version, the mid-transition-to-Flu
 Flux is not a library, or even a module. It's a design pattern more than anything else. If you've done much React, you'll know that a big part of the design philosophy behind it is this __unidirectional data flow__ concept. Having a one-way flow of data through your app is meant to make interactions easier to reason about, as well as leading to a significantly more robust app as complexity grows. Although you can `npm install flux`, all you get is the facebook dispatcher. This is a crucial part of this tutorial, but there are a plethora of other ways to implement Flux design principles without their flux module.  
 Safe, but what is Flux?
 
-### The flow
-i. Some sort of interaction happens  
-ii. Dispatcher dispatches an action  
-iii. Store reacts to dispatched action, updating its internal state     
-iv. Store emits change event  
-v. View reacts to store's change event   
+## The flow
+i. Some sort of interaction happens in the view  
+ii. This creates an action, which the dispatcher dispatches  
+iii. Stores react to the dispatched action, updating their internal state     
+iv. Stores emit change event  
+v. View reacts to stores' change event   
 
 There's a lot there, but I'll try to break it down.  
+
 ###__Actions__:  
-An action is just what it says, it's something happening. If you want a user to be able to submit a registration form by clicking on a button, then clicking that button is an action. So, in our React version, all of those 'onChange/Click' functions are actions. If you want to update your application when a server sends you new tweets, then receiving those tweets on the client-side is an action.  
+An action in Flux is what's made when something happens. If you want a user to be able to submit a registration form by clicking on a button, then you want the user's interaction with the form to __create an action__. So, in our React version, contained within all of those 'onChange/Click' functions are actions.  
+
 ###__The Dispatcher__:  
-You can think of this as being like a radio station. All it does is broadcast actions when they happen. Instead of your 'onClick' function using a callback passed down to it through props to set the state of your application, you'll instead want to use the dispatcher to dispatch a __specific event__.  
-How specific? Well, you'll want to give it two things: a __type__ and a __payload__. Why? Well, when a user submits a form, that action needs to be taken care of appropriately. First you need to know that the action that just happened was a form submission, so you can treat it appropriately (i.e. give it a __type__ of NEW_FORM_SUBMISSION), and secondly you need to also send off the information contained within the form (i.e. put the form data in a __payload__).  
-In order to react to specific dispatched events, stores (more on these below) need to register a callback with the dispatcher. What this practically means is that you to write some code that explicitly tells your store to actually listen to the dispatcher in order to hear it, and that tells it to do something when it hears the right thing.  
-Also, there's only one of these.
+You can think of this as being like a radio station. All it does is broadcast actions when they happen. Instead of your 'onClick' function using a callback passed down to it through props to set the state of your application, you'll instead want to use the dispatcher to dispatch a __specific action__.  
+How specific? Well, you'll want to give it two things: a __type__ and a __payload__. Why? Well, when a user submits a form, you want to take care of that interaction appropriately. You need to know that what just happened was a form submission, so you can treat it as such. Also, you need the information contained within the form.  
+
+In order to react to dispatched actions, stores (more on these below) need to register a callback with the dispatcher. What this practically means is that you to write some code that explicitly tells your store to actually listen to actions dispatched by the dispatcher, and what to do when it hears them.  
+Also, there's only one dispatcher. It's basically a single, global communication point between your components and your stores.  
+
 ###__Stores__:  
 Store's are really important. You know how you've been holding all the logic and data concerning the state of your application in your top-level React component? That really shouldn't be there. It looks pretty messy too. React is first and foremost a __UI library__. Your data and logic concerns should be taken care of elsewhere. What does that mean? It means your React components shouldn't be pushing objects to arrays of data that you then use to set state. React components should simply __ask stores__ for data, and update themselves accordingly. The only thing allowed to update data in your application is the store itself.  
 
@@ -64,7 +68,7 @@ So, what the store needs to do is to say that it has changed. As long as the vie
 
 So, a store holds a stock of data, and responds to dispatched actions that it's interested in by updating that data accordingly, before broadcasting an event saying that "I've changed". Any time a store changes its data, it has updated its __internal state__. Whenever a store updates its internal state, it needs to __emit__ a change event. But it can't use the dispatcher for this since this updating isn't an __action__! The dispatcher is only used for __actions__, and only __stores__ listen to the dispatcher. So the store will simply be an `EventEmitter` that emits "change" after every update. If you look in FruitStore.js, you'll see that this all takes place in `FruitDispatcher.register`, which is where it described what it wants to do once it hears an action from the Dispatcher. 
 
-So a big part of Flux is that there's no direct messaging service. Things are never __sent__ directly to places. All that happens is that __events get broadcasted__, __things listen for events__, and if they hear an event that they're listening for, they __react accordingly__. Stores listen for specific actions, and once they hear something they're listening for, they update their internal state. Views listen for update events from store's they're interested in, and once they hear them, ask for the fresh data so they can re-render.
+Things are never __sent__ directly to places. All that happens is that __events get broadcasted__, __things listen for events__, and if they hear an event that they're listening for, they __react accordingly__. Stores listen for specific actions, and once they hear one that they're interested in, they update their internal state. Views listen for update events from stores that they're interested in, and once they hear them, ask for the fresh data so they can re-render.
 
 ##The App
 The app we'll be building with the Flux design pattern is a 5-a-day tracker.
