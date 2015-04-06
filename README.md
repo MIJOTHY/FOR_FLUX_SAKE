@@ -1,4 +1,4 @@
-# ![flux logo](/assets/img/flux_logo_fandc.png) FOR_FLUX_SAKE ![flux logo](/assets/img/flux_logo_fandc.png)
+# ![flux logo](/assets/img/flux_logo_fandc.png) FOR_FLUX_SAKE: REACT VERSION ![flux logo](/assets/img/flux_logo_fandc.png)
 A simple tutorial for simple people who want to use flux with react.
 This tutorial follows on from [my react tutorial (WIP)](https://github.com/MIJOTHY/REACT_SCHMEACT).
 
@@ -19,12 +19,20 @@ We'll be using __React__ and __Flux__ in this tutorial. Other than a number of b
 // -- Terminal window -- \\
 git clone https://github.com/MIJOTHY/FOR_FLUX_SAKE.git
 cd FOR_FLUX_SAKE
-git checkout reactversion
 npm install gulp browserify -g
 npm install
+gulp
+
+// -- Terminal window 2 -- \\
+python -m SimpleHTTPServer
+
+// -- browser -- \\
+localhost:8000
 ```
 
-So now you know what Flux is, and you've installed the shizzle, you're good to get coding, right? Wrong. We've got some preparatory work to do first. If you want to compare the purely React version and the Flux version, just `git checkout fluxversion`.
+So now you've installed the shizzle, you're good to get coding, right? Wrong. We've got some preparatory work to do first.  
+If you're on master, you'll be looking at the fully Flux-ified version. 
+I highly recommend comparing the purely React version, the mid-transition-to-Flux version and the fully Flux version, which you can do with a `git checkout` between `reactversion`, `clearfruitversion` and `master`. If you're still gulping and server-ing, you'll be able to refresh your browser and see the new version. But it's the code we're interested in here.
 
 ##What is Flux?
 Flux is not a library, or even a module. It's a design pattern more than anything else. If you've done much React, you'll know that a big part of the design philosophy behind it is this __unidirectional data flow__ concept. Having a one-way flow of data through your app is meant to make interactions easier to reason about, as well as leading to a significantly more robust app as complexity grows.  
