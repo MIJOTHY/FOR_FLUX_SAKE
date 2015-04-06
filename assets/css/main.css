@@ -1,0 +1,121 @@
+body {
+  background-color: white;
+  padding-top: 20px;
+  font-family: 'Raleway', sans-serif;
+}
+
+:focus {
+  outline: auto;
+}
+
+.app-wrapper {
+  background-color: rgb(255,107,107);
+  width: 350px;
+  margin: auto;
+  padding-top: 5px;
+  border-radius: 5px;
+}
+
+.fruit-header {
+  height: 40px;
+  padding-left: 5px;
+  padding-bottom:5px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.searchbar {
+  border: none;
+  background-color: transparent;
+  width: 85%;
+  color: black;
+  font-size: 30px;
+  text-align: center;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  font-size: 30px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.plus {
+  float: right;
+}
+
+.minus {
+  float: left;
+}
+
+.fruit-list {
+  text-align: center;
+}
+
+.fruit-item:nth-child(even) {
+  background-color: rgb(199,244,100);
+}
+
+.fruit-item:nth-child(odd) {
+  background-color: white;
+}
+
+.fruit-item {
+  font-size: 20px;
+  height: 41px;
+  line-height: 41px;
+}
+
+.list-number {
+  float:right;
+  font-size: 15px;
+}
+
+/* Options item */
+.options-item {
+  height:20px;
+}
+
+button.clear {
+  font-size:10px;
+  color: white;
+  height:20px;
+  line-height:3px;
+  border-radius: 0px 5px 0px 5px;
+  position: relative;
+}
+
+#restart {
+  max-height: 15px;
+}
+
+#wtf {
+  height:20px;
+  float: right;
+}
+
+#fluxy {
+  height: 10px;
+}
+
+/* Input placeholder styles */
+*::-webkit-input-placeholder {
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}
+*:-moz-placeholder {
+    /* FF 4-18 */
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}

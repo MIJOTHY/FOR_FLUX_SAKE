@@ -1,0 +1,30 @@
+{
+  "name": "FOR_FLUX_SAKE",
+  "version": "1.0.0",
+  "description": "Simple flux, simple people",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MIJOTHY/FOR_FLUX_SAKE.git"
+  },
+  "author": "MIJOTHY",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MIJOTHY/FOR_FLUX_SAKE/issues"
+  },
+  "homepage": "https://github.com/MIJOTHY/FOR_FLUX_SAKE",
+  "dependencies": {
+    "flux": "^2.0.1",
+    "react": "^0.13.1"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.7",
+    "gulp": "^3.8.11",
+    "reactify": "^1.1.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.1.0"
+  }
+}
