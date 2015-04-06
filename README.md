@@ -3,7 +3,7 @@ A simple tutorial for simple people who want to use flux with react.
 This tutorial follows on from [my react tutorial (WIP)](https://github.com/MIJOTHY/REACT_SCHMEACT).
 
 ##Introduction
-In this tutorial, we'll be converting a purely React app into one built with the Flux design pattern. By doing so, I hope you can see why you probably want to use Flux if you're using React, and how you might start going about changing your app accordingly.
+In this tutorial, we'll be converting a purely React app into one built with the Flux design pattern. By doing so, I hope you can see why you might want to use Flux if you're using React, and how you might start going about changing your app accordingly. This tutorial isn't intended to take you the whole way to competency with Flux, but it is meant to bridge the pretty significant gap between not knowing Flux and being able to understand most tutorials online. It tries to do this by slowly morphing something you hopefully already understand into one something build with Flux architecture.  
 
 ## Pre-requisites
 Although this tutorial attempts to be as beginner-friendly as possible, it does make some assumptions about your background. It assumes:
@@ -35,7 +35,7 @@ If you're on master, you'll be looking at the fully Flux-ified version.
 I highly recommend comparing the purely React version, the mid-transition-to-Flux version and the fully Flux version, which you can do with a `git checkout` between `reactversion`, `clearfruitversion` and `master`. If you're still gulping and server-ing, you'll be able to refresh your browser and see the new version. But it's the code we're interested in here.
 
 ##What is Flux?
-Flux is not a library, or even a module. It's a design pattern more than anything else. If you've done much React, you'll know that a big part of the design philosophy behind it is this __unidirectional data flow__ concept. Having a one-way flow of data through your app is meant to make interactions easier to reason about, as well as leading to a significantly more robust app as complexity grows.  
+Flux is not a library, or even a module. It's a design pattern more than anything else. If you've done much React, you'll know that a big part of the design philosophy behind it is this __unidirectional data flow__ concept. Having a one-way flow of data through your app is meant to make interactions easier to reason about, as well as leading to a significantly more robust app as complexity grows. Although you can `npm install flux`, all you get is the facebook dispatcher. This is a crucial part of this tutorial, but there are a plethora of other ways to implement Flux design principles without their flux module.  
 Safe, but what is Flux?
 
 ### The flow
