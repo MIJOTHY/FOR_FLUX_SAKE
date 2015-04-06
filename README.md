@@ -40,9 +40,9 @@ Flux is not a library, or even a module. It's a design pattern more than anythin
 Safe, but what is Flux?
 
 ### The flow
-i. Some sort of action happens  
-ii. Dispatcher dispatches an action [aka event]  
-iii. Store reacts to dispatched action [aka event], updating its internal state      
+i. Some sort of interaction happens  
+ii. Dispatcher dispatches an action
+iii. Store reacts to dispatched action, updating its internal state     
 iv. Store emits change event  
 v. View reacts to store's change event   
 
