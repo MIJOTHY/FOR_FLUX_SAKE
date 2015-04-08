@@ -11,9 +11,14 @@ Although this tutorial attempts to be as beginner-friendly as possible, it does 
  * Familiarity with __Javascript__ (you understand what `.bind()` does, and when it might be needed),
  * Familiarity with __NodeJS__ (you understand the module.exports/require pattern, and know of EventEmitters),
  * Some experience with __React__ (you understand the difference between state and props, where state should lie, and how components can set the state of other components),
- * Some experience with __Git__ (we'll be switching branches now and again).
+ * Some experience with __Git__ (we'll be switching branches now and again).  
 
-We'll be using __React__ and __Flux__ in this tutorial. Other than a number of build/dev tools and __object-assign__, we won't be using anything else.
+If you don't feel comfortable with any of these, tutorials for these are everywhere. I've linked a few at the bottom of this readme if you're feeling a bit lost though.  
+
+We'll be using __React__ and __Flux__. Other than a number of build/dev tools (i.e. stuff not needed by our code) and __object-assign__, we won't be using anything else. So no funky random modules required into our code to make learning difficult. Oh yeah, and keyMirror, which is included with React.  
+
+Apart from __object-assign and keyMirror__, I hear you quip. Well, all object- assign is is a nice utility module filling in for an [es6 feature we don't yet have](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign). In a nutshell, it lets you copy the properties of some source objects and stick them in a destination object. But read the readme and the link above for more details if you want.  
+KeyMirror just takes an object as an argument and returns an object with the values the same as the keys. So `keyMirror({"blah": null})` returns `{"blah": "blah"}`. What a lifesaver.  
 
 ## Getting Started
 ```
@@ -109,5 +114,19 @@ __`git checkout clearfruitversion`__ to see the changes that have happened.
 
 ## WIP
 
-### Where do I go now?
-[Away to a place that will teach you to code really well for free.](http://foundersandcoders.org/apply.html)
+## Where do I go now?
+[Away to a place that will teach you to code really well for free.](http://foundersandcoders.org/apply.html)  
+
+## Good Flux Resources
+####Videos:  
+[A basic flux app. Skims over a lot, has some unexplained requires, but a good video nonetheless](https://www.youtube.com/watch?v=o5E894TmHJg)  
+
+[Easy to understand app. Funky code and madness modularization, but really good explanation of some of the core Fluxian concepts, and nice code to read on the repo](https://www.youtube.com/watch?v=jnOAbsBsd4g)  
+
+####Posts:
+[A really nice and short breakdown of the core concepts of Flux. Highly recommended](http://blog.andrewray.me/flux-for-stupid-people/)  
+
+### Good Prerequisite Resources
+[A solid intro to git](https://github.com/NataliaLKB/learn-git-basics)
+[My react tutorial (WIP) (am I allowed to put this here?](https://github.com/MIJOTHY/REACT_SCHMEACT)
+[A great, brief react overview](http://blog.andrewray.me/reactjs-for-stupid-people/)
