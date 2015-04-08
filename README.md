@@ -15,7 +15,7 @@ Although this tutorial attempts to be as beginner-friendly as possible, it does 
 
 If you don't feel comfortable with any of these, tutorials for these are everywhere. I've linked a few at the bottom of this readme if you're feeling a bit lost though.  
 
-We'll be using __React__ and __Flux__. Other than a number of build/dev tools (i.e. stuff not needed by our code) and __object-assign__, we won't be using anything else. So no funky random modules required into our code to make learning difficult. Oh yeah, and keyMirror, which is included with React.  
+We'll be using __React__ and __Flux__. Other than a number of build tools and __object-assign__, we won't be using anything else. So no funky random modules required into our code to make learning difficult. Oh yeah, and keyMirror, which is included with React.  
 
 Apart from __object-assign and keyMirror__, I hear you quip. Well, all object- assign is is a nice utility module filling in for an [es6 feature we don't yet have](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign). In a nutshell, it lets you copy the properties of some source objects and stick them in a destination object. But read the readme and the link above for more details if you want.  
 KeyMirror just takes an object as an argument and returns an object with the values the same as the keys. So `keyMirror({"blah": null})` returns `{"blah": "blah"}`. What a lifesaver.  
