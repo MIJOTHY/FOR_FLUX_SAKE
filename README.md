@@ -128,5 +128,5 @@ __`git checkout clearfruitversion`__ to see the changes that have happened.
 
 ### Good Prerequisite Resources
 [A solid intro to git](https://github.com/NataliaLKB/learn-git-basics)  
-[My react tutorial (WIP) (am I allowed to put this here?](https://github.com/MIJOTHY/REACT_SCHMEACT)  
+[My react tutorial (WIP) (am I allowed to put this here?)](https://github.com/MIJOTHY/REACT_SCHMEACT)  
 [A great, brief react overview](http://blog.andrewray.me/reactjs-for-stupid-people/)
