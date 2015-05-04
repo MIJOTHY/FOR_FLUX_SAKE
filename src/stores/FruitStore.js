@@ -53,7 +53,6 @@ FruitDispatcher.register(function(action) {
 				fruit: action.contents,
 				quantity: 1
 			};
-			console.log(freshFruit.id);
 			_fruities.push(freshFruit);
 			_headerText = "";
 			FruitStore.emitChange();

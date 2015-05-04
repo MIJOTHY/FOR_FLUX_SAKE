@@ -110,9 +110,177 @@ Let's start small. What's the simplest action we have? I'm gonna say it's `clear
 
 Exciting. And hey, there's that rogue apostrophe again! I forgot why that's there (__HINT HINT__).  
 
-__`git checkout clearfruitversion`__ to see the changes that have happened.
+### Step 1
 
-## WIP
+Ite, you'd better be on the react branch, so you can play along. `git checkout -b reactversion` and `git pull` if you haven't already. You should now have only react stuff. First things first, we need to make a __dispatcher__ so we can use it to dispatch actions. How do we do that? Go to your src folder, and create a folder called _dispatcher_. In there, let's make a file called _FruitDispatcher.js_, and that'll contain these two lines...
+```js
+var Dispatcher = require("flux").Dispatcher;
+module.exports = new Dispatcher();
+```
+And that's it. We've made our dispatcher. 
+
+### Step 1.1
+To the FruitFooter!  
+
+Presently, your `clickHandler` looks a bit like this:
+```js
+e.preventDefault();
+this.props.clearFruities()
+```
+Since we're gonna get fluxy, we don't need (or want) to use this state-changing callback passed down from on high. Instead, we're gonna want to have our click create and dispatch an action for anything that's interested to hear and act upon. For now, we'll do that directly in this file as we're only dealing with this one action, but later on, we'll create a file specifically for creating actions and dispatching them. So, go ahead and require the FruitDispatcher you just made, and let's create an action with the type CLEAR_ALL_FRUITS. Remember, we won't need a payload this time as we're only sending out a deletion action:
+```js
+e.preventDefault();
+var action = {
+	type: "CLEAR_ALL_FRUITS"
+}
+FruitDispatcher.dispatch(action);
+
+```
+If you're feeling fluxy, go ahead and create the action directly within the call to dispatch. I assigned it to the variable `action` here to make it obvious that we're creating an action and then dispatching that action. Refresh your browser page, and start clicking reset. One of three things should happen:
+a) An `error` cos you forgot to npm install
+b) An `error` cos you done screwed up
+c) Anything cos you done screwed up
+d) Nothing cos you did good
+Wow, isn't life great?    
+
+### Step 2
+This a big one - got to make a store. In the _src_ folder, let's make a folder called `stores`, and in there a file called `FruitStore.js`. This store is gonna need a bunch of boilerplate:
+```js
+var FruitDispatcher 		= require("../dispatcher/FruitDispatcher");
+var EventEmitter 			= require("events").EventEmitter;
+var assign 					= require("object-assign");
+
+// We'll assign this to a variable with a longer name than the string so that we can practice our touch-typing (and so an error is thrown if we make a typo)
+var CHANGE_EVENT = "change";
+
+// We create an empty object (a 'singleton', since we're not using a constructor), and assign to it the methods of EventEmitter.prototype and these custom methods we're sticking in the object passed as the 3rd argument
+var FruitStore = assign({}, EventEmitter.prototype, {
+
+// This is a method so that the store can broadcast to anyone listening that it has changed. We'll want to call this whenever the store updates the data it holds (changes its internal state).
+	emitChange: function() {
+		this.emit(CHANGE_EVENT);
+	},
+// These listener functions are what our views use to make sure they're listening for change events emitted by the store, and to stop listening accordingly.
+	addChangeListener: function(callback) {
+		this.on(CHANGE_EVENT, callback);
+	},
+
+	removeChangeListener: function(callback) {
+		this.removeListener(CHANGE_EVENT, callback);
+	}
+
+});
+
+module.exports = FruitStore;
+```
+
+Let's move our state into to `FruitStore` so that we can listen for the CLEAR_ALL_FRUITS action if it gets dispatched and clear our stock of fruits accordingly if we hear it. Let's insert the following just below `var CHANGE_EVENT = "change";`
+```js
+var _headerText = "";
+var _fruities   = [
+			{ id: "123456", fruit: "Chicken", quantity:6 },
+			{ id: "123467", fruit: "Apples" , quantity:2 },
+			{ id: "123478", fruit: "Oranges", quantity:4 },
+			{ id: "123489", fruit: "Peaches", quantity:1 }
+		];
+```
+Mad. So we've done our setup - our state is now held in the store, and we've got a bunch of public un/subscribe methods available. Now for the slightly more interesting part - let's register a callback with the FruitDispatcher so that the store can do something when it hears an action of a certain type:
+```js
+FruitDispatcher.register(function(action) {
+	// Check for the type of action we just heard
+	switch(action.type) {
+		// If it's one we want
+		case "CLEAR_ALL_FRUITS":
+			// Empty our stock of fruities
+			_fruities = [];
+			// And emit a change event to let everyone know that we've updated our internal state
+			FruitStore.emitChange();
+			break;
+	}
+});
+```
+### Step 3
+#### FruitStore
+So, now we've got our state held in the FruitStore rather than in the top-level component of our app, and we have a way to mutate that state through the medium of the dispatcher. What we're missing, however, are ways to __get state from the stores__. From other modules, we _can't access _fruities or _headerText because they're local to this module_. What we'll want to do is give our FruitStore some __public getter methods__. Let's stick these below the public change listener functions:
+```js
+var FruitStore = assign(
+	...
+	getFruities: function() {
+		return _fruities;
+	},
+
+	getText: function() {
+		return _headerText;
+	}
+
+});
+```
+Why are these public methods? Because they're methods of an object that we're exporting, so anyone importing the module can call them. Why are these public methods? Because we want them to be accessible to the general public, and these only let them un/subscribe to the store and ask the store for its current state.  
+
+Let's go to FruitApp and fruit some shiz up (...)
+#### FruitApp
+We'll need to do some cleaning. Let's change `getStateFromData` to `getStateFromStore`. If you haven't guessed already, we're gonna want to import `FruitStore.js` into this file, and make use of the two public getter methods we defined above. So, instead of hardcoding `headerText` and `fruities` there, we can instead say:
+```js
+return {
+	headerText: FruitStore.getText(),
+	fruities: FruitStore.getFruities()
+};
+```
+Gd 1. We now have a way to get state from stores, but we're not using it. In order to use it, we'll need to change `getInitialState` so that it calls `getStateFromStore()` rather than `getStateFromData()`. Do that now, refresh your browser, and you should see our default fruits there. Click on the clear fruits button, and if nothing happens, you haven't screwed up yet. Give yourself a pat on the back if you like congratulating yourself for non-achievements. (The other stuff should still work though)  
+
+#### You wanna fix it yh?
+So let's think this through. When our app runs, initially it asks the store for its stock of fruities. When the app gets that stock, it sets its state with it. When we click that clear fruits button, we dispatch an action with type `CLEAR_ALL_FRUITS`. Our store hears that action, and empties its array of `_fruities`. It then emits a `CHANGE_EVENT` and... There's our problem. Firstly, although our `FruitApp` is getting its initial state from the `FruitStore`, it's not subscribed to it so it doesn't get any update notifications. Because it doesn't get any update notifications, it doesn't realise that it should ask the store for its updated state when it changes. Let's fix that. There are 3 methods we'll want to add to `var FruitApp` just under `getInitialState`:
+```js
+componentDidMount: function() {
+	FruitStore.addChangeListener(this._onChange);
+},
+
+componentWillUnmount: function() {
+	FruitStore.removeChangeListener(this._onChange);
+},
+
+_onChange: function() {
+	this.setState(getStateFromStore());
+},
+```
+The first one tells our component to, once it mounts, subscribe to `FruitStore` so it can hear any change events that it emits. Take a peek at `addChangeListener` inside `FruitStore` and you'll see that it takes a callback that it passes to `on` to be executed when `CHANGE_EVENT` occurs. In FruitApp, we'll want to call `getStateFromStore` when we hear that the store has changed its state. We'll always want to get the entire state from the store as the store is the caretaker of state for our application. If there's any logic going on, the store takes care of it, so all our view has to do is to ask for that new data and it arrives ready to be rendered. So `_onChange` does that for us - it asks for the updated state and sets the component state with what arrives.  
+We'll also want a way for our component to unsubscribe from store notifications if it ever gets removed from the page. We do that in the same way as we subscribe to the store. We pass in the callback so that the component has the freshest state before its untimely demise.    
+
+_Nice_, now our app should fully run. Of course, there's still a considerable amount of legacy code flying about - we're only getting our initial state from the store and only clearing fruities is done properly, but we've laid the groundwork and there's really not much work left to get the app fully fluxified!    
+
+`Add` and `commit`, then __`git checkout clearfruitversion`__ to compare your version to mine.
+
+### K, let's do the rest
+I'll let you do the rest on your own. But here are some hints:  
+
+### 1. Folder Structure
+Try to keep your code modular. Move your action creation functions into a seperate file, in which you create and dispatch the actions. Define a set of constants that your action creators will use as `type`s, and that your stores will listen for. You should be able to look at your `...constants.js` file and, at a glance, know every state-mutating action that can occur in your app. For this app, your final product should have a structure that looks a bit like this:
+```
+/src
+	/actions
+		FruitActionCreators.js
+	/components
+		...
+	/constants
+		FruitConstants.js
+	/dispatcher
+		FruitDispatcher.js
+	/stores
+		FruitStore.js
+	(/util)
+main.js
+```
+If you start wanting to make api calls or your logic gets a bit bloated, perhaps make a `util` folder and stick those capabilities in there. 
+
+### 2. Migrating state-mutating functions to the store
+Literally all you have to do is add the relevant `case`s to your switch statement within your callback that's registered with the dispatcher, and then take the logic from your components and put them there.
+
+### 3. Tidying up
+Now we can delete all those state-mutating functions in `FruitApp`, those callbacks that we were passing down through props, and change our components so that they use the dispatcher (or, even better, make use of `FruitActionCreators`' methods).
+
+If you're feeling really stuck, you can `git checkout master` to see the final version. 
+
+# gz bud
 
 ## Where do I go now?
 [Away to a place that will teach you to code really well for free.](http://foundersandcoders.org/apply.html)  
