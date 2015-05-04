@@ -208,7 +208,7 @@ FruitDispatcher.register(function(action) {
 ```
 ### Step 3
 #### FruitStore
-So, now we've got our state held in the FruitStore rather than in the top-level component of our app, and we have a way to mutate that state through the medium of the dispatcher. What we're missing, however, are ways to __get state from the stores__. From other modules, we _can't access _fruities or _headerText because they're local to this module_. That _leading _underscore is meant to let us know that they're private. What we'll want to do is give our FruitStore some __public getter methods__. Let's stick these below the public change listener functions:
+So, now we've got our state held in the FruitStore rather than in the top-level component of our app, and we have a way to mutate that state through the medium of the dispatcher. What we're missing, however, are ways to __get state from the stores__. From other modules, we _can't access _fruities or _headerText because they're local to this module_. That leading underscore is meant to let us know that they're private. What we'll want to do is give our FruitStore some __public getter methods__. Let's stick these below the public change listener functions:
 ```js
 var FruitStore = assign(
 	...
