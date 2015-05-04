@@ -233,10 +233,10 @@ return {
 	fruities: FruitStore.getFruities()
 };
 ```
-Gd 1. We now have a way to get state from stores, but we're not using it. In order to use it, we'll need to change `getInitialState` so that it calls `getStateFromStore()` rather than `getStateFromData()`. Do that now, refresh your browser, and you should see our default fruits there. Click on the clear fruits button, and if nothing happens, you haven't screwed up yet. Give yourself a pat on the back if you like congratulating yourself for non-achievements. (The other stuff should still work though)  
+Gd 1. We now have a way to get state from stores, but we're not using it. In order to use it, we'll need to change `getInitialState` so that it calls `getStateFromStore()` rather than `getStateFromData()`. Do that now, refresh your browser, and you should see our default fruits there. Click on the clear fruits button, and if nothing happens, you haven't screwed up yet. Give yourself a pat on the back if you like congratulating yourself for non-achievements.  
 
 #### You wanna fix it yh?
-So let's think this through. When our app runs, initially it asks the store for its stock of fruities. When the app gets that stock, it sets its state with it. When we click that clear fruits button, we dispatch an action with type `CLEAR_ALL_FRUITS`. Our store hears that action, and empties its array of `_fruities`. It then emits a `CHANGE_EVENT` and... There's our problem. Firstly, although our `FruitApp` is getting its initial state from the `FruitStore`, it's not subscribed to it so it doesn't get any update notifications. Because it doesn't get any update notifications, it doesn't realise that it should ask the store for its updated state when it changes. Let's fix that. There are 3 methods we'll want to add to `var FruitApp` just under `getInitialState`:
+So let's think this through. When our app runs, initially it asks the store for its stock of fruities. When the app gets that stock, it sets its state with it. When we click that clear fruits button, we dispatch an action with type `CLEAR_ALL_FRUITS`. Our store hears that action, and empties its array of `_fruities`. It then emits a `CHANGE_EVENT` and... There's our problem. Firstly, although our `FruitApp` is getting its initial state from the `FruitStore`, it's not subscribed to it so it doesn't get any update notifications. Secondly, in virtue of it not getting any update notifications, it doesn't realise that it should ask the store for its updated state when it changes. Let's fix that. There are 3 methods we'll want to add to `var FruitApp` just under `getInitialState`:
 ```js
 componentDidMount: function() {
 	FruitStore.addChangeListener(this._onChange);
@@ -287,6 +287,7 @@ Now we can delete all those state-mutating functions in `FruitApp`, those callba
 If you're feeling really stuck, you can `git checkout master` to see the final version. 
 
 # gz bud
+u shud now be ok to read other flux tuts that r a bit more advanced :)
 
 ## Where do I go now?
 [Away to a place that will teach you to code really well for free.](http://foundersandcoders.org/apply.html)  
