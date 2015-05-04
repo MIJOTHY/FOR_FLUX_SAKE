@@ -78,7 +78,7 @@ So, a store holds a stock of data, and responds to dispatched actions that it's 
 
 Things are never __sent__ directly to places. All that happens is that __events get broadcasted__, __things listen for events__, and if they hear an event that they're listening for, they __react accordingly__. Stores listen for specific dispatched actions, and once they hear one that they're interested in, they update their internal state. Views listen for update events from stores that they're interested in, and once they hear them, ask for the fresh data so they can re-render. Note the slight difference. __Actions__ are dispatched with their data contained within them, so anyone listening can immediately get to work with them. __Stores__ emit change events that __only say "I've changed"__, and __don't contain any data__, so __their subscribers have to go to the store to ask for the updated data__.  
 
-I bet that at this point, that rogue apostrophe at the start of this section has been slyly tempting you into thinking of raising an issue to proudly point out how heinous a mistake I've made. Well, the joke's on you. Stores are actually so important that __nobody can reach in and change their data__. The only things that can change their data are __themselves when they hear a dispatched action that they care about__. In more technical terms, there are __no public setters__ provided by stores. The __only public store methods are getters__ (for getting crap from the store) __and ways to subscribe or unsubscribe from the store__ (for letting your components hear it when that store emits a change event, so you can go to get the updated crap from the store). So if you've got a problem with that apostrophe, __tough__. The only way you can get rid of it is to dispatch an action that it's listening for. But you don't have a dispatcher, sucker. I can put apostrophes in any st'o're I like and you can't do shit about it. 'St0'r312'3.
+I bet that at this point, that rogue apostrophe at the start of this section has been slyly tempting you into thinking of raising an issue to proudly point out how heinous a mistake I've made. Well, the joke's on you. Stores are actually so important that __nobody can reach in and change their data__. The only things that can change their data are __themselves when they hear a dispatched action that they care about__. In more technical terms, there are __no public setters__ provided by stores. The __only public store methods are getters__ (for getting crap from the store) __and ways to subscribe or unsubscribe from the store__ (for letting your components hear it when that store emits a change event, so you can go to get the updated crap from the store). So if you've got a problem with that apostrophe, __tough__. The only way you can get rid of it is to dispatch an action that it's listening for. But you don't have a dispatcher, sucker. I can put apostrophes in any st'o're I like and you can't do shit about it.    
 
 ##The App
 The app we'll be building with the Flux design pattern is a 5-a-day tracker. But I use it for counting how many pints I've had before lunchtime.  
@@ -112,12 +112,12 @@ Exciting. And hey, there's that rogue apostrophe again! I forgot why that's ther
 
 ### Step 1
 
-Ite, you'd better be on the react branch, so you can play along. `git checkout -b reactversion` and `git pull` if you haven't already. You should now have only react stuff. First things first, we need to make a __dispatcher__ so we can use it to dispatch actions. How do we do that? Go to your src folder, and create a folder called _dispatcher_. In there, let's make a file called _FruitDispatcher.js_, and that'll contain these two lines...
+Ite, you'd better be on the react branch, so you can play along. __`git checkout -b reactversion`__ and __`git pull`__ if you haven't already. You should now have _only react stuff_. First things first, we need to make a __dispatcher__ so we can use it to dispatch actions. How do we do that? Go to your src folder, and create a folder called _/dispatcher_. In there, let's make a file called `FruitDispatcher.js`, and that'll contain these two lines...
 ```js
 var Dispatcher = require("flux").Dispatcher;
 module.exports = new Dispatcher();
 ```
-And that's it. We've made our dispatcher. 
+And that's it. We've made our dispatcher. Isn't flux cool? The equals operators even line up without us trying. god thats fluxy.
 
 ### Step 1.1
 To the FruitFooter!  
@@ -127,7 +127,7 @@ Presently, your `clickHandler` looks a bit like this:
 e.preventDefault();
 this.props.clearFruities()
 ```
-Since we're gonna get fluxy, we don't need (or want) to use this state-changing callback passed down from on high. Instead, we're gonna want to have our click create and dispatch an action for anything that's interested to hear and act upon. For now, we'll do that directly in this file as we're only dealing with this one action, but later on, we'll create a file specifically for creating actions and dispatching them. So, go ahead and require the FruitDispatcher you just made, and let's create an action with the type CLEAR_ALL_FRUITS. Remember, we won't need a payload this time as we're only sending out a deletion action:
+Since we're gonna get fluxy, we don't need (or want) to use this state-changing callback passed down from 'pon high. Instead, we're gonna want to have our click create and dispatch an action for anything that's interested to hear and act upon. For now, we'll do that directly in this file as we're only dealing with this one action, but later on, we'll create a file specifically for creating actions and dispatching them. So, go ahead and __require__ the `FruitDispatcher` you just made, and let's create an action with the type `CLEAR_ALL_FRUITS`. Remember, we won't need a payload this time as we're only sending out a deletion action:
 ```js
 e.preventDefault();
 var action = {
@@ -136,31 +136,35 @@ var action = {
 FruitDispatcher.dispatch(action);
 
 ```
-If you're feeling fluxy, go ahead and create the action directly within the call to dispatch. I assigned it to the variable `action` here to make it obvious that we're creating an action and then dispatching that action. Refresh your browser page, and start clicking reset. One of three things should happen:  
-a) An `error` cos you forgot to npm install  
-b) An `error` cos you done screwed up  
-c) Anything cos you done screwed up  
+If you're feeling fluxy, go ahead and create the action directly within the call to dispatch. I assigned it to the variable `action` here to make it obvious that we're creating an action and then dispatching that action. Refresh your browser page, and start clicking reset like a madperson. One of three things should happen:  
+a) An `ERROR` cos you forgot to npm install  
+b) An `ERROR` cos you done screwed up  
+c) An `ANYTHING` cos you done screwed up  
 d) Nothing cos you did good  
-Wow, isn't life great?    
 
 ### Step 2
-This a big one - got to make a store. In the _src_ folder, let's make a folder called `stores`, and in there a file called `FruitStore.js`. This store is gonna need a bunch of boilerplate:
+This a big one - got to make a store. In the _/src_ folder, let's make a folder called _/stores_, and in there a file called `FruitStore.js`. This store is gonna need a bunch of boilerplate:
 ```js
-var FruitDispatcher 		= require("../dispatcher/FruitDispatcher");
-var EventEmitter 			= require("events").EventEmitter;
-var assign 					= require("object-assign");
+var FruitDispatcher = require("../dispatcher/FruitDispatcher");
+var EventEmitter    = require("events").EventEmitter;
+var assign          = require("object-assign");
 
-// We'll assign this to a variable with a longer name than the string so that we can practice our touch-typing (and so an error is thrown if we make a typo)
+// We'll assign this to a variable with a longer name than the string so that 
+// we can practice our touch-typing (and so an error is thrown if we make a typo)
 var CHANGE_EVENT = "change";
 
-// We create an empty object (a 'singleton', since we're not using a constructor), and assign to it the methods of EventEmitter.prototype and these custom methods we're sticking in the object passed as the 3rd argument
+// We create an empty object (a 'singleton', since we're not using a constructor), 
+// and assign to it the methods of EventEmitter.prototype and these custom methods
+// we're sticking in the object passed as the 3rd argument
 var FruitStore = assign({}, EventEmitter.prototype, {
 
-// This is a method so that the store can broadcast to anyone listening that it has changed. We'll want to call this whenever the store updates the data it holds (changes its internal state).
+// This is a method so that the store can broadcast to anyone listening that it has changed. 
+// We'll want to call this whenever the store updates the data it holds (changes its internal state).
 	emitChange: function() {
 		this.emit(CHANGE_EVENT);
 	},
-// These listener functions are what our views use to make sure they're listening for change events emitted by the store, and to stop listening accordingly.
+// These listener functions are what our views use to make sure they're listening for 
+// change events emitted by the store, and to stop listening accordingly.
 	addChangeListener: function(callback) {
 		this.on(CHANGE_EVENT, callback);
 	},
@@ -174,7 +178,7 @@ var FruitStore = assign({}, EventEmitter.prototype, {
 module.exports = FruitStore;
 ```
 
-Let's move our state into to `FruitStore` so that we can listen for the CLEAR_ALL_FRUITS action if it gets dispatched and clear our stock of fruits accordingly if we hear it. Let's insert the following just below `var CHANGE_EVENT = "change";`
+Let's move our state into to `FruitStore` so that we can listen for the `CLEAR_ALL_FRUITS` action if it gets dispatched and __clear our stock__ of fruits accordingly if we hear it. Let's insert the following just below `var CHANGE_EVENT = "change";`
 ```js
 var _headerText = "";
 var _fruities   = [
@@ -184,16 +188,19 @@ var _fruities   = [
 			{ id: "123489", fruit: "Peaches", quantity:1 }
 		];
 ```
-Mad. So we've done our setup - our state is now held in the store, and we've got a bunch of public un/subscribe methods available. Now for the slightly more interesting part - let's register a callback with the FruitDispatcher so that the store can do something when it hears an action of a certain type:
+Mad. So we've done our setup - our __state is now held in the store__, and we've got a bunch of __public un/subscribe__ methods available. Now for the slightly more interesting part - let's register a callback with the FruitDispatcher so that the store can do something when it hears an action of a certain type:
 ```js
+// Start listening to actions dispatched by the dispatcher, 
+// And upon hearing one
 FruitDispatcher.register(function(action) {
-	// Check for the type of action we just heard
+	// Check for its type...
 	switch(action.type) {
 		// If it's one we want
 		case "CLEAR_ALL_FRUITS":
 			// Empty our stock of fruities
 			_fruities = [];
-			// And emit a change event to let everyone know that we've updated our internal state
+			// And emit a change event to let anyone listening know that 
+			// we've just updated our internal state
 			FruitStore.emitChange();
 			break;
 	}
@@ -201,7 +208,7 @@ FruitDispatcher.register(function(action) {
 ```
 ### Step 3
 #### FruitStore
-So, now we've got our state held in the FruitStore rather than in the top-level component of our app, and we have a way to mutate that state through the medium of the dispatcher. What we're missing, however, are ways to __get state from the stores__. From other modules, we _can't access _fruities or _headerText because they're local to this module_. What we'll want to do is give our FruitStore some __public getter methods__. Let's stick these below the public change listener functions:
+So, now we've got our state held in the FruitStore rather than in the top-level component of our app, and we have a way to mutate that state through the medium of the dispatcher. What we're missing, however, are ways to __get state from the stores__. From other modules, we _can't access _fruities or _headerText because they're local to this module_. That _leading _underscore is meant to let us know that they're private. What we'll want to do is give our FruitStore some __public getter methods__. Let's stick these below the public change listener functions:
 ```js
 var FruitStore = assign(
 	...
@@ -248,13 +255,13 @@ We'll also want a way for our component to unsubscribe from store notifications 
 
 _Nice_, now our app should fully run. Of course, there's still a considerable amount of legacy code flying about - we're only getting our initial state from the store and only clearing fruities is done properly, but we've laid the groundwork and there's really not much work left to get the app fully fluxified!    
 
-`Add` and `commit`, then __`git checkout clearfruitversion`__ to compare your version to mine.
+__`Add`__ and __`commit`__, then __`git checkout clearfruitversion`__ to compare your version to mine.
 
 ### K, let's do the rest
 I'll let you do the rest on your own. But here are some hints:  
 
 ### 1. Folder Structure
-Try to keep your code modular. Move your action creation functions into a seperate file, in which you create and dispatch the actions. Define a set of constants that your action creators will use as `type`s, and that your stores will listen for. You should be able to look at your `...constants.js` file and, at a glance, know every state-mutating action that can occur in your app. For this app, your final product should have a structure that looks a bit like this:
+Try to keep your code __modular__. Move your action creator functions into a seperate file, in which you __create and dispatch the actions__. Define a __set of constants__ for your app that your action creators will use as `type`s, and that your stores will listen for. You should be able to look at your `blahBlahAppConstants.js` file and, at a glance, know every state-mutating action that can occur in your app. For this app, your final product should have a structure that looks a bit like this:
 ```
 /src
 	/actions
@@ -267,13 +274,12 @@ Try to keep your code modular. Move your action creation functions into a sepera
 		FruitDispatcher.js
 	/stores
 		FruitStore.js
-	(/util)
 main.js
 ```
-If you start wanting to make api calls or your logic gets a bit bloated, perhaps make a `util` folder and stick those capabilities in there. 
+If you start wanting to make api calls or your logic gets a bit bloated, I'd advise making a `util` folder and to stick those capabilities in there. The fundamental thing is to be _sensible_ with splitting up your app though. If a function does more than one thing, it should be split up. If you have a bunch of functions that do similar stuff (such as making API calls or creating actions) but they're in a file not dedicated to that, perhaps it's bloody well time you move them there.  
 
 ### 2. Migrating state-mutating functions to the store
-Literally all you have to do is add the relevant `case`s to your switch statement within your callback that's registered with the dispatcher, and then take the logic from your components and put them there.
+Literally all you have to do now is add the relevant `case`s to your switch statement within your callback that's registered with the dispatcher, and then take the logic from your components and put them there. This may also involve creating that `FruitConstants.js` file as seen above and exporting an `ActionTypes` object with a bunch of constants from there.
 
 ### 3. Tidying up
 Now we can delete all those state-mutating functions in `FruitApp`, those callbacks that we were passing down through props, and change our components so that they use the dispatcher (or, even better, make use of `FruitActionCreators`' methods).
