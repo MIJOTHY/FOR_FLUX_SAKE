@@ -136,11 +136,11 @@ var action = {
 FruitDispatcher.dispatch(action);
 
 ```
-If you're feeling fluxy, go ahead and create the action directly within the call to dispatch. I assigned it to the variable `action` here to make it obvious that we're creating an action and then dispatching that action. Refresh your browser page, and start clicking reset. One of three things should happen:
-a) An `error` cos you forgot to npm install
-b) An `error` cos you done screwed up
-c) Anything cos you done screwed up
-d) Nothing cos you did good
+If you're feeling fluxy, go ahead and create the action directly within the call to dispatch. I assigned it to the variable `action` here to make it obvious that we're creating an action and then dispatching that action. Refresh your browser page, and start clicking reset. One of three things should happen:  
+a) An `error` cos you forgot to npm install  
+b) An `error` cos you done screwed up  
+c) Anything cos you done screwed up  
+d) Nothing cos you did good  
 Wow, isn't life great?    
 
 ### Step 2
