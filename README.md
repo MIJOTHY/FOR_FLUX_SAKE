@@ -1,10 +1,12 @@
 # ![flux logo](/assets/img/flux_logo_fandc.png) FOR_FLUX_SAKE ![flux logo](/assets/img/flux_logo_fandc.png)
 A simple tutorial for simple people who want to use flux with react.
-This tutorial follows on from [my react tutorial (WIP)](https://github.com/MIJOTHY/REACT_SCHMEACT).
+This tutorial follows on from [my react tutorial (WIP)](https://github.com/MIJOTHY/REACT_SCHMEACT).    
+
+Feel free to raise issues/make pull reqs for any reason, i'm easy.
 
 ##Introduction
 In this tutorial, we'll be converting a purely React app into one built with the Flux design pattern. By doing so, I hope you can see why you might want to use Flux if you're using React, and how you might start going about changing your app accordingly.  
-This tutorial isn't intended to take you the whole way to competency with Flux, but it is meant to bridge the pretty significant gap between not knowing Flux and being able to understand most tutorials online. It tries to do this by slowly morphing something you hopefully already understand into one built according to the principles of the Flux architecture (how grand does that sound).  
+This tutorial isn't intended to take you the whole way to competency with Flux, but it is meant to bridge the pretty significant gap between not knowing Flux and being able to understand most tutorials online. It tries to do this by slowly morphing something you hopefully already understand into a thing built according to the principles of the Flux architecture (how grand does that sound).  
 
 ## Pre-requisites
 Although this tutorial attempts to be as beginner-friendly as possible, it does make some assumptions about your background. It assumes:
@@ -49,8 +51,8 @@ Safe, thanks for that m8, but what's Flux?
 2. This creates an action, which the dispatcher dispatches  
 3. Stores react to the dispatched action if they're interested, updating their internal state     
 4. After updating, the stores emit a change event  
-5. The stateful view component hears the change event of stores it is listening to  
-6. The stateful view component asks the stores for new data, calling setState with the new data
+5. Stateful view component(s) hear the change event of stores they're listening to  
+6. Stateful view component(s) ask the stores for new data, calling setState with the new data
 
 There's a lot there, but I'll try to break it down.  
 
