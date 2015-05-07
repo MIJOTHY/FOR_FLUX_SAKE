@@ -2,7 +2,7 @@
 A simple tutorial for simple people who want to use flux with react.
 This tutorial follows on from [my react tutorial (WIP)](https://github.com/MIJOTHY/REACT_SCHMEACT).    
 
-Feel free to raise issues/make pull reqs for any reason, i'm easy.
+Feel free to raise issues/make pull reqs for any reason, I'm easy.
 
 ##Introduction
 In this tutorial, we'll be converting a purely React app into one built with the Flux design pattern. By doing so, I hope you can see why you might want to use Flux if you're using React, and how you might start going about changing your app accordingly.  
