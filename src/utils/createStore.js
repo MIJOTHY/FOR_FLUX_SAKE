@@ -1,6 +1,6 @@
 "use strict";
-var EventEmitter   = require("events").EventEmitter;
-var objectAssign   = require("object-assign");
+var EventEmitter = require("events").EventEmitter;
+var objectAssign = require("object-assign");
 
 var CHANGE_EVENT = "change";
 
