@@ -9,5 +9,5 @@ module.exports = {
 		"CHANGE_TEXT": null,
 		"CLEAR_ALL_FRUITS": null
 	})
-	
+
 };

@@ -2,7 +2,7 @@ var React 		  = require("react");
 var FruitListItem = require("./FruitListItem");
 
 var FruitList = React.createClass({
-	
+
 	render: function() {
 		var fruititems = [];
 		this.props.fruities.forEach(function(fruit) {

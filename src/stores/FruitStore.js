@@ -1,10 +1,8 @@
-var FruitDispatcher 		= require("../dispatcher/FruitDispatcher");
-var FruitConstants  		= require("../constants/FruitConstants");
-var EventEmitter 			= require("events").EventEmitter;
-var assign 					= require("object-assign");
+var FruitDispatcher = require("../dispatcher/FruitDispatcher");
+var FruitConstants  = require("../constants/FruitConstants");
+var createStore     = require("../utils/createStore");
 
 var ActionTypes  = FruitConstants.ActionTypes;
-var CHANGE_EVENT = "change";
 
 var _headerText = "";
 var _fruities   = [
@@ -14,19 +12,7 @@ var _fruities   = [
 			{ id: "123489", fruit: "Peaches", quantity:1 }
 		];
 
-var FruitStore = assign({}, EventEmitter.prototype, {
-
-	emitChange: function() {
-		this.emit(CHANGE_EVENT);
-	},
-
-	addChangeListener: function(callback) {
-		this.on(CHANGE_EVENT, callback);
-	},
-
-	removeChangeListener: function(callback) {
-		this.removeListener(CHANGE_EVENT, callback);
-	},
+var FruitStore = createStore({
 
 	getFruities: function() {
 		return _fruities;
@@ -46,8 +32,8 @@ FruitDispatcher.register(function(action) {
 			_headerText = action.contents;
 			FruitStore.emitChange();
 			break;
-		
-		case ActionTypes.ADD_FRUIT: 
+
+		case ActionTypes.ADD_FRUIT:
 			var freshFruit = {
 				id: Date.now().toString().slice(-6),
 				fruit: action.contents,
