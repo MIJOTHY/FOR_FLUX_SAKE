@@ -1,32 +1,31 @@
-var FruitDispatcher = require("../dispatcher/FruitDispatcher");
-var FruitConstants  = require("../constants/FruitConstants");
-var createStore     = require("../utils/createStore");
+"use strict";
+import FruitDispatcher from "../dispatcher/FruitDispatcher";
+import { ActionTypes } from FruitConstants  from "../constants/FruitConstants";
+import createStore     from "../utils/createStore";
 
-var ActionTypes  = FruitConstants.ActionTypes;
-
-var _headerText = "";
-var _fruities   = [
+let _headerText = "";
+let _fruities   = [
 			{ id: "123456", fruit: "Chicken", quantity:6 },
 			{ id: "123467", fruit: "Apples" , quantity:2 },
 			{ id: "123478", fruit: "Oranges", quantity:4 },
 			{ id: "123489", fruit: "Peaches", quantity:1 }
 		];
 
-var FruitStore = createStore({
+const FruitStore = createStore({
 
-	getFruities: function() {
+	getFruities() {
 		return _fruities;
 	},
 
-	getText: function() {
+	getText() {
 		return _headerText;
 	}
 
 });
 
-FruitDispatcher.register(function(action) {
+FruitDispatcher.register(action => {
 
-	switch(action.type) {
+	switch (action.type) {
 
 		case ActionTypes.CHANGE_TEXT:
 			_headerText = action.contents;
@@ -34,7 +33,7 @@ FruitDispatcher.register(function(action) {
 			break;
 
 		case ActionTypes.ADD_FRUIT:
-			var freshFruit = {
+			const freshFruit = {
 				id: Date.now().toString().slice(-6),
 				fruit: action.contents,
 				quantity: 1
@@ -50,8 +49,9 @@ FruitDispatcher.register(function(action) {
 			break;
 
 		case ActionTypes.INCREMENT_QUANTITY:
-			_fruities = _fruities.map(function(ele) {
+			_fruities = _fruities.map(ele => {
 				if (ele.id === action.contents) ele.quantity += 1;
+
 				return ele;
 			});
 			FruitStore.emitChange();
@@ -59,12 +59,13 @@ FruitDispatcher.register(function(action) {
 
 		case ActionTypes.DECREMENT_QUANTITY:
 			newFruities = [];
-			_fruities.forEach(function(ele) {
+			_fruities.forEach(ele => {
 				if (ele.id === action.contents) {
 					if (ele.quantity === 0) return;
+
 					ele.quantity -= 1;
 				}
-				return newFruities.push(ele);
+				newFruities.push(ele);
 			});
 			_fruities = newFruities;
 			FruitStore.emitChange();
@@ -73,4 +74,4 @@ FruitDispatcher.register(function(action) {
 	}
 });
 
-module.exports = FruitStore;
+export default FruitStore;

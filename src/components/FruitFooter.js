@@ -1,22 +1,15 @@
-var React = require("react");
-var FruitActionCreators = require("../actions/FruitActionCreators");
+"use strict";
+import React, { Component, PropTypes } from "react";
+import { clearFruities } from FruitActionCreators from "../actions/FruitActionCreators";
 
-var FruitFooter = React.createClass({
-
-	clickHandler: function(e) {
-		e.preventDefault();
-		FruitActionCreators.clearFruities();
-	},
-
-	render: function() {
+export default class FruitFooter extends Component {
+	render() {
 		return (
 			<div className="options-item">
-		    <button onClick={this.clickHandler} className="clear"><img id="restart" src="assets/img/glyphicon-restart.png" /></button>
+		    <button onClick={clearFruities} className="clear"><img id="restart" src="assets/img/glyphicon-restart.png" /></button>
 		    <button className="clear" id="wtf"><img src="assets/img/flux_logo_fandc_black.png" id="fluxy" /> </button>
    		</div>
 		);
 	}
+};
 
-});
-
-module.exports = FruitFooter;

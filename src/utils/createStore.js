@@ -1,33 +1,34 @@
 "use strict";
-var EventEmitter = require("events").EventEmitter;
-var objectAssign = require("object-assign");
+import { EventEmitter } from "events";
+import objectAssign from "object-assign";
 
-var CHANGE_EVENT = "change";
+const CHANGE_EVENT = "change";
 
-module.exports = function(spec) {
-	var emitter = new EventEmitter();
+export function createStore(spec) {
+	const emitter = new EventEmitter();
 	emitter.setMaxListeners(0);
 
-	var store = objectAssign({
-		emitChange: function() {
+	const store = objectAssign({
+		emitChange() {
 			emitter.emit(CHANGE_EVENT);
 		},
 
-		addChangeListener: function(callback) {
+		addChangeListener(callback) {
 			emitter.on(CHANGE_EVENT, callback);
 		},
 
-		removeChangeListener: function(callback) {
+		removeChangeListener(callback) {
 			emitter.removeListener(CHANGE_EVENT, callback);
 		}
 	}, spec);
 
 	// Auto-bind store methods for convenience
-	Object.keys(store).forEach(function(method) {
+	let methods = Object.keys;
+
+	methods.forEach(method => {
 		if (typeof store[method] === "function") {
 			store[method] = store[method].bind(store);
 		}
-	});
 
 	return store;
-};
+}

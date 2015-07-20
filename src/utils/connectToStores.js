@@ -1,32 +1,34 @@
 "use strict";
-var React = require("react");
+import React, { Component } from "react";
 
-module.exports = function connectToStores(arrayOfStores, getStateFromStores) {
+export default function connectToStores(arrayOfStores, getStateFromStores) {
 	return function(ComponentToConnect) {
-		return React.createClass({
-			getInitialState: function() {
-				return getStateFromStores();
-			},
+		return class StoreConnector extends Component {
 
-			componentWillMount: function() {
-				arrayOfStores.forEach(function(store) {
-						store.addChangeListener(this.onStoreChange)
-					}
+			constructor() {
+				super();
+				this.state = getStateFromStores();
+
+				this.onStoreChange = this.onStoreChange.bind(this);
+			};
+
+			componentWillMount() {
+				arrayOfStores.forEach(store =>
+					store.addChangeListener(this.onStoreChange)
 				);
-			},
+			}
 
-			componentWillUnmount: function() {
-				arrayOfStores.forEach(function(store) {
-						store.removeChangeListener(this.onStoreChange)
-					}
+			componentWillUnmount() {
+				arrayOfStores.forEach(store =>
+					store.removeChangeListener(this.onStoreChange)
 				);
-			},
+			}
 
-			onStoreChange: function() {
+			onStoreChange() {
 				this.setState(getStateFromStores());
-			},
+			}
 
-			render: function() {
+			render() {
 				return <ComponentToConnect {...this.state} {...this.props} />;
 			}
 		};

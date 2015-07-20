@@ -1,7 +1,8 @@
-var React 	 = require("react");
-var FruitApp = require("./components/FruitApp");
+"use strict";
+import React from "react";
+import FruitApp from "./components/FruitApp";
 
 React.render(
-	<FruitApp />, 
+	<FruitApp />,
 	document.getElementById("content")
 );

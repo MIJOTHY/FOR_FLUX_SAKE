@@ -1,41 +1,39 @@
-var FruitConstants  = require("../constants/FruitConstants");
-var FruitDispatcher = require("../dispatcher/FruitDispatcher");
+"use strict";
+import { ActionTypes } from "../constants/FruitConstants";
+import { dispatch } from FruitDispatcher from "../dispatcher/FruitDispatcher";
 
-var ActionTypes = FruitConstants.ActionTypes; 
-
-module.exports = {
-
-	changeText: function(newText) {
-		FruitDispatcher.dispatch({
+export default {
+	changeText(newText) {
+		dispatch({
 			type: ActionTypes.CHANGE_TEXT,
 			contents: newText
 		});
 	},
 
-	addFruit: function(fruitName) {
-		FruitDispatcher.dispatch({
+	addFruit(fruitName) {
+		dispatch({
 			type: ActionTypes.ADD_FRUIT,
 			contents: fruitName
 		});
 	},
 
-	clearFruities: function() {
-		FruitDispatcher.dispatch({
+	clearFruities() {
+		dispatch({
 			type: ActionTypes.CLEAR_ALL_FRUITS
 		});
 	},
 
-	incrementQuantity: function(id) {
-		FruitDispatcher.dispatch({
+	incrementQuantity(id) {
+		dispatch({
 			type: ActionTypes.INCREMENT_QUANTITY,
 			contents: id
 		});
 	},
-	decrementQuantity: function(id) {
-		FruitDispatcher.dispatch({
+
+	decrementQuantity(id) {
+		dispatch({
 			type: ActionTypes.DECREMENT_QUANTITY,
 			contents: id
 		});
-	},
-
+	}
 };

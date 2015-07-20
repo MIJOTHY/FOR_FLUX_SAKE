@@ -1,12 +1,11 @@
-var React       = require("react");
-var FruitHeader = require("./FruitHeader");
-var FruitList 	= require("./FruitList");
-var FruitFooter = require("./FruitFooter");
-var FruitStore 	= require("../stores/FruitStore");
-var connectToStores = require("../utils/connectToStores");
-var FruitActionCreators = require("../actions/FruitActionCreators");
-
-var PropTypes = React.PropTypes;
+"use strict";
+import React, { Component, PropTypes } from "react";
+import FruitHeader from "./FruitHeader";
+import FruitList from "./FruitList";
+import FruitFooter from "./FruitFooter";
+import FruitStore from "../stores/FruitStore";
+import connectToStores from "../utils/connectToStores";
+import * as FruitActionCreators from "../actions/FruitActionCreators";
 
 function getStateFromStores() {
 	return {
@@ -15,18 +14,8 @@ function getStateFromStores() {
 	};
 }
 
-var FruitApp = React.createClass({
-
-	propTypes: {
-		headerText: PropTypes.string,
-		fruities: PropTypes.arrayOf(PropTypes.shape({
-			id: PropTypes.string,
-			fruit: PropTypes.string,
-			quantity: PropTypes.number
-		}))
-	},
-
-	render: function() {
+class FruitApp extends Component {
+	render() {
 		return (
 			<div className="app-wrapper">
 				<FruitHeader title={this.props.headerText} addFruit={FruitActionCreators.addFruit} />
@@ -35,6 +24,17 @@ var FruitApp = React.createClass({
 			</div>
 		);
 	}
-});
+};
 
-module.exports = connectToStores([FruitStore], getStateFromStores)(FruitApp);
+FruitApp.PropTypes = {
+	headerText: PropTypes.string,
+	fruities: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			fruit: PropTypes.string,
+			quantity: PropTypes.number
+		})
+	)
+}
+
+export default connectToStores([FruitStore], getStateFromStores)(FruitApp);

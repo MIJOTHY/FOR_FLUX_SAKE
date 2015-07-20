@@ -1,6 +1,7 @@
-var keyMirror = require("react/lib/keyMirror");
+"use strict";
+import keyMirror from "react/lib/keyMirror";
 
-module.exports = {
+export default {
 
 	ActionTypes: keyMirror({
 		"INCREMENT_QUANTITY": null,

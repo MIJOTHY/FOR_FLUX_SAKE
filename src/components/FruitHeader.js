@@ -1,19 +1,20 @@
-var React 			= require("react");
-var FruitActions 	= require("../actions/FruitActionCreators");
+"use strict";
+import React, { Component, PropTypes } from "react";
+import { changeText, addFruit } from FruitActions from "../actions/FruitActionCreators";
 
-var FruitHeader = React.createClass({
+export default class FruitHeader extends Component {
 
-	textChangeHandler: function(e) {
+	textChangeHandler(e) {
 		e.preventDefault();
-		FruitActions.changeText(e.target.value);
+		changeText(e.target.value);
 	},
 
-	submitHandler: function(e) {
+	submitHandler(e) {
 		e.preventDefault();
-		FruitActions.addFruit(this.props.title);
+		addFruit(this.props.title);
 	},
 
-	render: function() {
+	render() {
 		return (
 			<form onSubmit={this.submitHandler} className="fruit-header">
 		    <input value={this.props.title} onChange={this.textChangeHandler} className="searchbar" type="text" placeholder="5-a-day tracker"/>
@@ -21,6 +22,8 @@ var FruitHeader = React.createClass({
 			</form>
 		);
 	}
-});
+};
 
-module.exports = FruitHeader;
+FruitHeader.propTypes = {
+	title: PropTypes.string
+};
