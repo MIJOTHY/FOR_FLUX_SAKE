@@ -4,9 +4,11 @@
   "description": "Simple flux, simple people",
   "main": "app.js",
   "scripts": {
+    "postinstall": "mkdir build",
     "build": "browserify -t babelify src/main.js -o build/main.js",
     "build:watch": "watchify src/main.js -t babelify -o build/main.js",
     "lint": "eslint **/*.js",
+    "serve": "python -m SimpleHTTPServer",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +22,7 @@
   },
   "homepage": "https://github.com/MIJOTHY/FOR_FLUX_SAKE",
   "dependencies": {
-    "flux": "^2.0.1",
+    "flux": "^2.0.3",
     "react": "^0.13.1"
   },
   "devDependencies": {

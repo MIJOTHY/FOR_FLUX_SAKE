@@ -1,37 +1,37 @@
 "use strict";
-import { ActionTypes } from "../constants/FruitConstants";
-import { dispatch } from FruitDispatcher from "../dispatcher/FruitDispatcher";
+import ActionTypes from "../constants/FruitConstants";
+import FruitDispatcher from "../dispatcher/FruitDispatcher";
 
 export default {
 	changeText(newText) {
-		dispatch({
+		FruitDispatcher.dispatch({
 			type: ActionTypes.CHANGE_TEXT,
 			contents: newText
 		});
 	},
 
 	addFruit(fruitName) {
-		dispatch({
+		FruitDispatcher.dispatch({
 			type: ActionTypes.ADD_FRUIT,
 			contents: fruitName
 		});
 	},
 
 	clearFruities() {
-		dispatch({
+		FruitDispatcher.dispatch({
 			type: ActionTypes.CLEAR_ALL_FRUITS
 		});
 	},
 
 	incrementQuantity(id) {
-		dispatch({
+		FruitDispatcher.dispatch({
 			type: ActionTypes.INCREMENT_QUANTITY,
 			contents: id
 		});
 	},
 
 	decrementQuantity(id) {
-		dispatch({
+		FruitDispatcher.dispatch({
 			type: ActionTypes.DECREMENT_QUANTITY,
 			contents: id
 		});

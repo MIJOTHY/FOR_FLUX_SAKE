@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component, PropTypes } from "react";
-import { clearFruities } from FruitActionCreators from "../actions/FruitActionCreators";
+import { clearFruities } from "../actions/FruitActionCreators";
 
 export default class FruitFooter extends Component {
 	render() {

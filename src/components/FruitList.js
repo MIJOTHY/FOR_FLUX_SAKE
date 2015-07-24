@@ -6,7 +6,7 @@ export default class FruitList extends Component {
 	render() {
 		let fruititems = [];
 		this.props.fruities.forEach(fruit => {
-			if (this.props.filterText.includes(fruit.fruit)) {
+			if (fruit.fruit.indexOf(this.props.filterText) !== -1) {
 				fruititems.push(
 					<FruitListItem
 							key={fruit.id}
@@ -33,5 +33,6 @@ FruitList.propTypes = {
 			id: PropTypes.string,
 			fruit: PropTypes.string,
 			quantity: PropTypes.number
-		}))
+		})
+	)
 }

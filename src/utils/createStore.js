@@ -4,7 +4,7 @@ import objectAssign from "object-assign";
 
 const CHANGE_EVENT = "change";
 
-export function createStore(spec) {
+export default function createStore(spec) {
 	const emitter = new EventEmitter();
 	emitter.setMaxListeners(0);
 
@@ -23,12 +23,13 @@ export function createStore(spec) {
 	}, spec);
 
 	// Auto-bind store methods for convenience
-	let methods = Object.keys;
+	let methods = Object.keys(store);
 
 	methods.forEach(method => {
 		if (typeof store[method] === "function") {
 			store[method] = store[method].bind(store);
 		}
+	});
 
 	return store;
 }

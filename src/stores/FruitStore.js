@@ -1,7 +1,7 @@
 "use strict";
 import FruitDispatcher from "../dispatcher/FruitDispatcher";
-import { ActionTypes } from FruitConstants  from "../constants/FruitConstants";
-import createStore     from "../utils/createStore";
+import ActionTypes from "../constants/FruitConstants";
+import createStore from "../utils/createStore";
 
 let _headerText = "";
 let _fruities   = [
@@ -24,7 +24,6 @@ const FruitStore = createStore({
 });
 
 FruitDispatcher.register(action => {
-
 	switch (action.type) {
 
 		case ActionTypes.CHANGE_TEXT:
@@ -58,7 +57,7 @@ FruitDispatcher.register(action => {
 			break;
 
 		case ActionTypes.DECREMENT_QUANTITY:
-			newFruities = [];
+			let newFruities = [];
 			_fruities.forEach(ele => {
 				if (ele.id === action.contents) {
 					if (ele.quantity === 0) return;

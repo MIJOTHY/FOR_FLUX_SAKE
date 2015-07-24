@@ -1,18 +1,18 @@
 "use strict";
 import React, { Component, PropTypes } from "react";
-import { changeText, addFruit } from FruitActions from "../actions/FruitActionCreators";
+import { changeText, addFruit } from "../actions/FruitActionCreators";
 
 export default class FruitHeader extends Component {
 
 	textChangeHandler(e) {
 		e.preventDefault();
 		changeText(e.target.value);
-	},
+	}
 
 	submitHandler(e) {
 		e.preventDefault();
 		addFruit(this.props.title);
-	},
+	}
 
 	render() {
 		return (

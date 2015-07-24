@@ -5,7 +5,6 @@ import FruitList from "./FruitList";
 import FruitFooter from "./FruitFooter";
 import FruitStore from "../stores/FruitStore";
 import connectToStores from "../utils/connectToStores";
-import * as FruitActionCreators from "../actions/FruitActionCreators";
 
 function getStateFromStores() {
 	return {
@@ -16,9 +15,10 @@ function getStateFromStores() {
 
 class FruitApp extends Component {
 	render() {
+		console.log(this.props)
 		return (
 			<div className="app-wrapper">
-				<FruitHeader title={this.props.headerText} addFruit={FruitActionCreators.addFruit} />
+				<FruitHeader title={this.props.headerText} />
 				<FruitList fruities={this.props.fruities} filterText={this.props.headerText}/>
 				<FruitFooter/>
 			</div>
