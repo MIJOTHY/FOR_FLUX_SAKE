@@ -4,6 +4,9 @@
   "description": "Simple flux, simple people",
   "main": "app.js",
   "scripts": {
+    "build": "browserify -t babelify src/main.js -o build/main.js",
+    "build:watch": "watchify src/main.js -t babelify -o build/main.js",
+    "lint": "eslint **/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,10 +24,12 @@
     "react": "^0.13.1"
   },
   "devDependencies": {
+    "babel": "^5.4.7",
+    "babelify": "^6.1.2",
+    "babel-eslint": "^3.1.10",
     "browserify": "^9.0.7",
-    "gulp": "^3.8.11",
-    "reactify": "^1.1.0",
-    "vinyl-source-stream": "^1.1.0",
+    "eslint": "^0.22.1",
+    "object-assign": "^2.0.0",
     "watchify": "^3.1.0"
   }
 }
