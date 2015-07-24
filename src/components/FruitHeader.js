@@ -16,9 +16,9 @@ export default class FruitHeader extends Component {
 
 	render() {
 		return (
-			<form onSubmit={this.submitHandler} className="fruit-header">
+			<form onSubmit={this.submitHandler.bind(this)} className="fruit-header">
 		    <input value={this.props.title} onChange={this.textChangeHandler} className="searchbar" type="text" placeholder="5-a-day tracker"/>
-		    <button onClick={this.submitHandler} className="plus"><img src="assets/img/glyphicon-leaf.png" /></button>
+		    <button onClick={this.submitHandler.bind(this)} className="plus"><img src="assets/img/glyphicon-leaf.png" /></button>
 			</form>
 		);
 	}
