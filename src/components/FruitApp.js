@@ -15,7 +15,6 @@ function getStateFromStores() {
 
 class FruitApp extends Component {
 	render() {
-		console.log(this.props)
 		return (
 			<div className="app-wrapper">
 				<FruitHeader title={this.props.headerText} />
