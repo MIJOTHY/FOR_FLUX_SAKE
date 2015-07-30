@@ -6,9 +6,9 @@ In a larger application, you'll find yourself writing the same flux boilerplate 
 
 Incidentally, gaearon has his own flux implementation that offers some very nice things on top of reduction of boilerplate (the isomorphism typical to flux implementations, but also hot-loading, stores as pure functions, and more).
 
-The two primary abstractions made are:
-1. A higher-level component purely for the purposes of connecting to store(s) and fetching data.
-2. A store-generating utility function, that takes some store methods and returns a store object with the standard emit/connect/disconnect methods.
+The two primary abstractions made are:  
+1. A higher-level component purely for the purposes of connecting to store(s) and fetching data.  
+2. A store-generating utility function, that takes some store methods and returns a store object with the standard emit/connect/disconnect methods.  
 
 These files are both found in `utils`, the former is called `connectToStores`, the latter `createStore`. Below are some commented versions of the files.
 
