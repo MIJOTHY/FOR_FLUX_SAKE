@@ -80,7 +80,8 @@ var CHANGE_EVENT = "change";
 module.exports = function(spec) {
 	var emitter = new EventEmitter();
 	// We set the max listeners to 0 as we don't want to impose a limit on the number of listeners.
-	// This often shouldn't matter but it's worth keeping in mind the default limit of 10
+	// This often shouldn't matter but it's worth keeping in mind that there is a default limit of 10,
+	// and you may not always want that limit.
 	emitter.setMaxListeners(0);
 
 	var store = objectAssign({
