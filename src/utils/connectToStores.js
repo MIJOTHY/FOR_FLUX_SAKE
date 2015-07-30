@@ -10,16 +10,14 @@ module.exports = function connectToStores(arrayOfStores, getStateFromStores) {
 
 			componentWillMount: function() {
 				arrayOfStores.forEach(function(store) {
-						store.addChangeListener(this.onStoreChange)
-					}
-				);
+					store.addChangeListener(this.onStoreChange)
+				}.bind(this));
 			},
 
 			componentWillUnmount: function() {
 				arrayOfStores.forEach(function(store) {
-						store.removeChangeListener(this.onStoreChange)
-					}
-				);
+					store.removeChangeListener(this.onStoreChange)
+				}.bind(this));
 			},
 
 			onStoreChange: function() {
@@ -29,6 +27,6 @@ module.exports = function connectToStores(arrayOfStores, getStateFromStores) {
 			render: function() {
 				return <ComponentToConnect {...this.state} {...this.props} />;
 			}
-		};
+		});
 	};
 }
