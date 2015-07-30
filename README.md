@@ -2,7 +2,7 @@
 
 # Advanced Patterns
 
-In a larger application, you'll find yourself writing the same flux boilerplate over and over again. This get's fairly tedious fairly quickly. There are a few simple ways you can reduce boilerplate through abstraction of a flux application. Many independent flux implementations tend to just take different approaches to reducing boilerplate, and don't provide much more (other than server-side rendering, or 'isomorphism' to be fancy). I'll be using some ideas borrowed from gaearon in an example app he made, and are pretty much just vanilla flux but with some nice abstractions.
+In a larger application, you'll find yourself writing the same flux boilerplate over and over again. This gets fairly tedious fairly quickly. There are a few simple ways you can reduce boilerplate through abstraction of a flux application. Many independent flux implementations tend to just take different approaches to reducing boilerplate, and don't provide much more (other than server-side rendering, or 'isomorphism' to be fancy). I'll be using some ideas borrowed from gaearon in an example app he made, and these ideas stay to true to vanilla flux but with some nice abstractions.
 
 Incidentally, gaearon has his own flux implementation that offers some very nice things on top of reduction of boilerplate (the isomorphism typical to flux implementations, but also hot-loading, stores as pure functions, and more).
 
@@ -32,18 +32,16 @@ module.exports = function connectToStores(arrayOfStores, getStateFromStores) {
 				// about-to-mount phase. Since a component will likely be subscribing to multiple stores
 				// in a larger app, we pass in an array of stores to connect to.
 				arrayOfStores.forEach(function(store) {
-						store.addChangeListener(this.onStoreChange)
-					}
-				);
+					store.addChangeListener(this.onStoreChange)
+				}.bind(this));
 			},
 
 			componentWillUnmount: function() {
 				// Just as we subscribe to a store when a component mounts, we also want to clean up
 				// after ourselves when the component is no longer going to be mounted in the page.
 				arrayOfStores.forEach(function(store) {
-						store.removeChangeListener(this.onStoreChange)
-					}
-				);
+					store.removeChangeListener(this.onStoreChange)
+				}.bind(this));
 			},
 
 			onStoreChange: function() {
@@ -112,3 +110,7 @@ module.exports = function(spec) {
 
 See FruitStore for example usage of this function.
 This should look fairly familiar if you've been following the tutorial thus far. It is merely some abstraction of code we've already written.
+If you find yourself using more methods as part of your store boilerplate, rather than directly modifying this fairly abstract and single-concern utility method, I would instead make another utility function with the same idea as this one, but with the methods and properties you wish to be conferred onto your store, and then define a basic `compose` function so that you can `compose(createStore, addMoreToStore)(spec)`.
+
+If you're not entirely sure what function composition is, let's break it down with reference to what we're doing here with stores. Our `createStore` function takes an object, and returns a new object. Our `addMoreToStore` function operates in the same way - it takes an object, and returns a new object. These functions have no side effects - they merely take a value and return a value. In this sense, they are 'pure'. If this is the case, then it would be nice to be able to condense these functions into a single function - one that takes an object and returns an object, only this time, it returns an object that has got the functionality conferred upon it by both the `createStore` and `addMoreToStore` functions. We would like to `compose` those two functions together so that we just have one function.
+Since this was a very brief explanation and one particular to our case, I really recommend giving 'function composition' a google. A generic `compose` function is very resusable across projects and is a staple in functional programming. It also makes you feel pretty badass.
